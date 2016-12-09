@@ -3,7 +3,7 @@ extends layout
 block scripts
 	script(src="/socket.io/socket.io.js")
 
-block content
+block body
 	h3 Hello Web Sockets
 	button(onclick="notify_clicked();") Send message to the server
 
@@ -12,15 +12,11 @@ block content
 
 		/* SEND Message */
 		function notify_clicked() { 
-			socket.emit('user_clicked_button', {data: 'I clicked the big button'});
+			socket.emit('item_approved', {data: 'I clicked the big button'});
 		}
 
 		/* RECEIVE Message */
-		socket.on('big_news', function(data) {
-			console.log(data);
-		});
-
-		socket.on('all_ok', function(data) {
+		socket.on('new_item', function(data) {
 			console.log(data);
 		});
 
