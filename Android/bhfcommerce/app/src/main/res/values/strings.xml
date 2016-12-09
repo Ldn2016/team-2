@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">bhfcommerce</string>
+
+    <string name="bt_submit">Submit</string>
 </resources>
