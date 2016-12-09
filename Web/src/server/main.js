@@ -44,13 +44,17 @@ const sockets = require('./controllers/sockets');
 sockets.attach(server); // attach() is Socket.IO specific
 
 app.get('/', function(req, res) {
+	res.send('Go to <a href="/tmp">/tmp</a> to see demo usage of templates');
+});
+
+app.get('/tmp', function(req, res) {
 	// Standard cookies
 	req.cookies.set("my-cookie-key", "my-cookie-string-value");
 	req.cookies.get("my-cookie-key");
 
 	// SESSION cookies
-	req.session.shop = { items: [1,2,3] }; // set cookie - any json or string
-	req.session.views += 1;
+	//req.session.shop = { items: [1,2,3] }; // set cookie - any json or string
+	//req.session.views += 1;
 	// delete req.session.shop;
 
 	// res.json({ user: 'john' }); // Send json response
@@ -60,6 +64,7 @@ app.get('/', function(req, res) {
 		{ title: 'Demo', data: { name: "any json", items: [3, 5, 8] } } 
 	); 
 });
+
 
 app.post('/file_upload', upload.single('avatar'), function(req, res) {
 	console.log(req.file); // uploaded file info
