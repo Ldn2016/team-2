@@ -12,5 +12,5 @@ https://www.bhf.org.uk/
 ## Screenshots
 TODO
 
-![01](https://github.com/Dalimil/NodeJS-Quickstart/blob/master/docs/screenshots/bhf-logo.png)
+![01](https://github.com/Ldn2016/team-2/blob/master/docs/screenshots/bhf-logo.png)
 
