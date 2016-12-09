@@ -5,9 +5,9 @@ const bodyParser = require('body-parser'); // additional body parsing
 const multer = require('multer'); // file upload (multipart/form-data)
 const morgan = require('morgan'); // General request logger
 const Cookies = require('cookies'); // General cookie handling
-const session = require('express-session'); // SESSION cookies
-const MongoStore = require('connect-mongo')(session); // Session data storage (server-side MongoDB)
-const mongoose = require('mongoose'); // ORM for MongoDB
+//const session = require('express-session'); // SESSION cookies
+//const MongoStore = require('connect-mongo')(session); // Session data storage (server-side MongoDB)
+//const mongoose = require('mongoose'); // ORM for MongoDB
 const path = require('path');
 const pp = s => path.join(__dirname, s);
 const app = express();
@@ -29,15 +29,15 @@ const debug = require('./utils/debug'); // + my own logger
 app.use(debug.requestInfo); // Middleware function - Order/Place of call important!
 // app.use('/articles', requestInfo); // Works but messes up request URLs - /articles/id -> /id
 
-mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
+//mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
 
 // Set up secure SESSION cookies
-app.use(session({
+/*app.use(session({
 	secret: config.APP_SECRET,
 	saveUninitialized: false,
 	resave: false, // keep the most recent session modification
 	store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
+}));*/
 
 /** Route handlers */
 const sockets = require('./controllers/sockets');
