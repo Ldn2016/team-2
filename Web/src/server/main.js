@@ -44,7 +44,17 @@ const sockets = require('./controllers/sockets');
 sockets.attach(server); // attach() is Socket.IO specific
 
 app.get('/', function(req, res) {
-	res.send('Go to <a href="/tmp">/tmp</a> to see demo usage of templates');
+	res.send(`
+		<h1>API</h1>
+		GET <a href="/store">/store</a> - get store listing<br>
+		POST /queue - add new product to the shop assistant's approval queue<br>
+		<hr><br>
+		<h1>User</h1>
+		GET <a href="/management/shop">/management/shop</a> - Shop assistant control dashboard<br>
+		GET <a href="/management/central">/management/central</a> - BHF control dashboard<br>
+		GET <a href="/tmp">/tmp</a> - demo usage of templates<br>
+
+	`);
 });
 
 app.get('/tmp', function(req, res) {
@@ -65,8 +75,28 @@ app.get('/tmp', function(req, res) {
 	); 
 });
 
+app.get('/store', (req, res) => {
+	const items = [
+		{
+			title: 'Brand New Dress Reiss',
+			descr: 'Size 10 - Blue - Sleeveless',
+			price: 17.99
+		},
+		{
+			title: 'The Father Christmas Letters',
+			descr: 'J.R.R. Tolkien - The Father Christmas Letters - Good condition',
+			price: 2.99
+		},
+		{
+			title: 'Crystal Rose Bowl',
+			descr: 'Vintage pressed green glass',
+			price: 7.99
+		}
+	];
+	res.json({ timedate: Date.now(), items: items });
+});
 
-app.post('/file_upload', upload.single('avatar'), function(req, res) {
+app.post('/store', upload.single('avatar'), function(req, res) {
 	console.log(req.file); // uploaded file info
 	console.log(req.file.path + " " + req.file.filename); // where it's stored
 	console.log(req.body); // text form-fields
