@@ -10,6 +10,8 @@
 npm install   # install dependencies
 ```
 
++ make sure MongoDB is running...
+
 ## Run
 
 ```sh

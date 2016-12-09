@@ -1,0 +1,41 @@
+{
+  "name": "bhf-app",
+  "version": "0.1.0",
+  "license": "MPL-2.0",
+  "description": "App for British Heart Foundation",
+  "main": "app.js",
+  "scripts": {
+    "build-dev": "webpack --progress --watch",
+    "build": "webpack --progress -p",
+    "start": "nodemon app.js",
+    "all": "concurrently --kill-others \"npm run build-dev\" \"npm run start\"",
+    "deploy": "lt --port 8080 -s nodejsapp -o"
+  },
+  "author": "CodeForGood2016-team2",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.7",
+    "connect-mongo": "^1.2.0",
+    "cookies": "^0.6.1",
+    "crypto": "0.0.3",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0",
+    "multer": "^1.1.0",
+    "pug": "^2.0.0-alpha7",
+    "request": "^2.72.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.8",
+    "babel-preset-latest": "^6.16.0",
+    "concurrently": "^3.1.0",
+    "localtunnel": "^1.8.2",
+    "nodemon": "^1.9.2",
+    "webpack": "^1.14.0"
+  }
+}
