@@ -13,11 +13,11 @@ console.log("Main module loaded.");
 
 
 
-function populateStore() {
+function populateStore(category) {
 	$.get("/api/store", function(data) {
 		const items = JSON.parse(data).items;
 		console.log(items);
-		const $target = $("#tab-features");
+		const $target = $("#tab-features-content");
 		$target.html("");
 		const $target2 = $("tbody");
 		$target2.html("");
@@ -27,6 +27,7 @@ function populateStore() {
 			console.log(timedate);
 			
 			if (item.status == "queue") {
+
 				numun++;
 				$target2.append(`
 					<tr>
@@ -48,6 +49,8 @@ function populateStore() {
 	              </tr>
 	             `);
 			} else {
+				console.log(category, item.category);
+				if (category && category != item.category) return;
 				$target.append(`
 				<div class="col-sm-4">
 					<div class="panel panel-danger">

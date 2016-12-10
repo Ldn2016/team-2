@@ -1,5 +1,9 @@
 /* Layout */
-  
+  @font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+}
+
   html {
     height: 100%;
     margin: 0;
@@ -7,6 +11,7 @@
   }
 
   body {
+    font-family: myFirstFont;
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -30,17 +35,17 @@
 
   .panel-body {
     color: black;
-
   }
 
   .page-wrapper {
-    width: 55%;
+    width: 80%;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 30px 100px;
+    background-color: rgba(50, 50, 50, 0.5);
   }
 
   .content-wrapper {
-    min-height: 500px; /* forcing footer lower */
+    min-height: 2500px; /* forcing footer lower */
     padding: 10px 0;
   }
 
@@ -101,6 +106,10 @@
       float: right;
     }
   }
+
+.nav-pills .active a {
+  background-color: #e61a2d !important;
+}
 
 /* Footer */
 

@@ -22,6 +22,18 @@ block scripts
         }, 1500);
       });
 
+      $(".nav-pills a").click(function() {
+        const alloff = $(this).parent().hasClass("active");
+        console.log(alloff);
+        $(".nav-pills").children().removeClass("active");
+        if (!alloff) {
+          $(this).parent().addClass("active");
+          populateStore($(this).text());
+        } else {
+          populateStore();
+        }
+      });
+
     });
 
 
@@ -53,6 +65,14 @@ block body
         
         // Tab Features
         <div id="tab-features">
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation"><a href="#">Books</a></li>
+            <li role="presentation"><a href="#">Clothing</a></li>
+            <li role="presentation"><a href="#">Entertainment</a></li>
+            <li role="presentation"><a href="#">Collectibles</a></li>
+          </ul>
+          <div id="tab-features-content">
+          </div>
           // Include another template
           //include demos/bootstrap-demo
         </div>
