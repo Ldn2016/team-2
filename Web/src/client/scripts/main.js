@@ -58,7 +58,7 @@ function populateStore(category) {
 				          <h3 class="panel-title">${item.title} - ${item.price}&pound;</h3>
 				        </div>
 				        <div class="panel-body">
-				          <img src="${item.imgUrl}" class="img-thumbnail">
+				          <img src="${item.imgUrl}" class="img-thumbnail"><br />
 				        	Category: ${item.category} <br>
 				        	Added: ${timedate} <br>
 				          	<span style="text-shadow: none;">${item.description}</span><br><br>
