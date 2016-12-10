@@ -46,8 +46,8 @@ public class ImageUtil {
     }
 
     private static Bitmap resizeImage(Bitmap bitmap) {
-        int newWidth = (int) (bitmap.getWidth() * 0.9);
-        int newHeight = (int) (bitmap.getHeight() * 0.9);
+        int newWidth = (int) (bitmap.getWidth() * 0.03);
+        int newHeight = (int) (bitmap.getHeight() * 0.03);
         return Bitmap.createScaledBitmap(bitmap,
                 newWidth,
                 newHeight,

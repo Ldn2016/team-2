@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bhfcommerce</string>
+    <string name="app_name">BHF Donate</string>
 
     <string name="bt_submit">Submit</string>
     <string name="title_activity_list_item">Item List</string>
@@ -9,4 +9,6 @@
 
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="suggested_price">Suggested Price</string>
+    <string name="title_activity_profile">My Profile</string>
 </resources>
