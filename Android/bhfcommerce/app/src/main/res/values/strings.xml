@@ -11,7 +11,7 @@
     <string name="description">Description</string>
     <string name="suggested_price">Suggested Price</string>
     <string name="title_activity_profile">My Profile</string>
-    <string name="title_activity_gift_aid_signup">GiftAidSignupActivity</string>
+    <string name="title_activity_gift_aid_signup">Gift Aid Sign Up</string>
 
     <string name="coronary"><![CDATA[<p>Coronary heart disease(CHD), is the leading cause of death both in the UK and
 worldwide. Each year, about 1 in 6 men and 1 in 10 women in the UK die from CHD.

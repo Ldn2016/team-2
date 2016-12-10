@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +15,13 @@
         android:stretchMode="columnWidth"
         android:gravity="center"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HEllo World"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -23,4 +30,4 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_input_add" />
-</FrameLayout>
+</RelativeLayout>

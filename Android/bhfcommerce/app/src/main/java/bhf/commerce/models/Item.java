@@ -10,23 +10,35 @@ import org.json.JSONObject;
  */
 public class Item {
     private Bitmap bitmap;
-    private String imageUrl;
-    private String title;
-    private String description;
-    private String suggestedPrice;
-    private String status;
-    private String price;
+    private String imageUrl = "";
+    private String title = "";
+    private String description = "";
+    private String suggestedPrice = "";
+    private String status = "";
+    private String price = "";
 
     public Item(){}
 
     public Item(JSONObject obj){
         try{
-            title = obj.getString("title");
-            description = obj.getString("description");
-            suggestedPrice = obj.getString("suggestedPrice");
-            price = obj.getString("price");
-            status = obj.getString("status");
-            imageUrl = obj.getString("imgUrl");
+            if(obj.has("title"))
+                title = obj.getString("title");
+
+            if(obj.has("description"))
+                description = obj.getString("description");
+
+            if(obj.has("suggestedPrice"))
+                suggestedPrice = obj.getString("suggestedPrice");
+
+            if(obj.has("price"))
+                price = Double.toString(obj.getDouble("price"));
+
+            if(obj.has("status"))
+                status = obj.getString("status");
+
+            if(obj.has("imgUrl"))
+                imageUrl = obj.getString("imgUrl");
+
         } catch(JSONException e){
             e.printStackTrace();
         }
@@ -78,5 +90,13 @@ public class Item {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

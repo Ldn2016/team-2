@@ -7,9 +7,6 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-/**
- * Created by whdinata on 9/28/16.
- */
 public class ImageUtil {
     public static Bitmap rotateBitmap(ContentResolver cr, Uri uri){
         try {

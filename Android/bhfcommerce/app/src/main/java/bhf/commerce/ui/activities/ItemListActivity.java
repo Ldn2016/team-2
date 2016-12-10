@@ -1,11 +1,11 @@
 package bhf.commerce.ui.activities;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,12 @@ import bhf.commerce.R;
 import bhf.commerce.callbacks.OnListItemFetched;
 import bhf.commerce.connections.API;
 import bhf.commerce.models.Item;
+import bhf.commerce.ui.adapters.ItemAdapter;
 import bhf.commerce.ui.adapters.ItemPagerAdapter;
-import bhf.commerce.ui.fragments.ItemListDonatedFragment;
 
-public class ItemListActivity extends AppCompatActivity implements ItemListDonatedFragment.OnFragmentInteractionListener{
+public class ItemListActivity extends AppCompatActivity implements OnListItemFetched {
     private ItemPagerAdapter adapter;
+    private ItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +27,27 @@ public class ItemListActivity extends AppCompatActivity implements ItemListDonat
         setContentView(R.layout.activity_list_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        GridView gridView = (GridView) findViewById(R.id.gridview);
+        itemAdapter = new ItemAdapter(this);
+        gridView.setAdapter(itemAdapter);
 
-        adapter = new ItemPagerAdapter(getSupportFragmentManager());
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(adapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(pager);
+        API.init(this);
+        API.getListItems(this);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
+    @Override
+    public void onItemFetched(Item[] items) {
+        setData(items);
+    }
+
+    public void setData(Item items[]){
+        List<Item> list = new ArrayList<>();
+
+        for(Item item : items){
+            list.add(item);
+        }
+
+        itemAdapter.setData(list);
     }
 }

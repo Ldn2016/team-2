@@ -34,14 +34,7 @@ public class ItemListNotDonatedFragment extends ItemListFragment implements View
     private OnFragmentInteractionListener mListener;
 
     public ItemListNotDonatedFragment() {
-        // Required empty public constructor
-    }
 
-    public static ItemListNotDonatedFragment newInstance(String param1, String param2) {
-        ItemListNotDonatedFragment fragment = new ItemListNotDonatedFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -50,9 +43,9 @@ public class ItemListNotDonatedFragment extends ItemListFragment implements View
         View view = inflater.inflate(R.layout.fragment_item_list_not_donated, null);
         view.findViewById(R.id.fab).setOnClickListener(this);
 
-        GridView gridView = (GridView) view.findViewById(R.id.gridview);
+//        GridView gridView = (GridView) view.findViewById(R.id.gridview);
         adapter = new ItemAdapter(getContext());
-        gridView.setAdapter(adapter);
+//        gridView.setAdapter(adapter);
 
         API.init(getActivity());
         API.getListItems(this);
