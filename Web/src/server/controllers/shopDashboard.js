@@ -9,14 +9,8 @@ io.on('connection', (socket) => {
 	users.push(uid);
 	console.log("socket.io - a user connected - " + uid);
 
-	/* Broadcast to everyone */
-	io.emit('big_news', {'msg': 'new user connected'}); 
-	/* Send to a single user */
-	io.to(uid).emit('big_news', "Message for a particular user");
-
-	socket.on('user_clicked_button', (data) => {
+	socket.on('item_approved', (data) => {
 		console.log(data);
-		socket.emit('all_ok', {'msg': 'thanks'}); // respond to the same client
 	});
 
 	socket.on('disconnect', () => {
@@ -26,4 +20,4 @@ io.on('connection', (socket) => {
 	});
 });
 
-module.exports = io;
+module.exports = { io };
