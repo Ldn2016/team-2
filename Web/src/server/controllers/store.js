@@ -29,20 +29,23 @@ function getUserItems(userId) {
 
 		console.log(item); // item object
 	});
-}
+} 
 
 // UPDATE = FIND + SAVE
-function approveItem() {
-	StoreItem.findById(1, (err, item) => {
+function approveItem(data) {
+	StoreItem.findOneAndUpdate(
+		{ 
+			title: data.title 
+		},
+		{ 
+			status: "approved",
+			price: data.price,
+			category: data.category
+		}, 
+		function(err, item) {
 		if (err) throw err;
 
-		item.status = 'approved';
-
-		item.save((err) => {
-			if (err) throw err;
-
-			console.log('Item successfully updated!');
-		});
+		console.log(item); // updated item
 	});
 }
 
@@ -52,18 +55,25 @@ function init() {
 		if (!items.length) {
 			addItem(new StoreItem({
 				title: 'Brand New Dress Reiss',
-				descr: 'Size 10 - Blue - Sleeveless',
-				price: 17.99
+				description: 'Size 10 - Blue - Sleeveless',
+				imgUrl: 'http://i.ebayimg.com/00/s/NTAwWDQzNg==/z/EuYAAOxy63FSsTa2/$_35.JPG?set_id=2',
+				price: 17.99,
+				category: "Clothing"
 			}));
 			addItem(new StoreItem({
 				title: 'The Father Christmas Letters',
-				descr: 'J.R.R. Tolkien - The Father Christmas Letters - Good condition',
-				price: 2.99
+				description: 'J.R.R. Tolkien - The Father Christmas Letters - Good condition',
+				imgUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/FatherChristmasLetters.JPG/220px-FatherChristmasLetters.JPG',
+				price: 2.99,
+				category: "Books"
 			}));
 			addItem(new StoreItem({
 				title: 'Crystal Rose Bowl',
-				descr: 'Vintage pressed green glass',
-				price: 7.99
+				description: 'Vintage pressed green glass',
+				imgUrl: 'http://thumbs.picclick.com/00/s/MTIwMFgxNjAw/z/Oa8AAOSwKtVW00LR/$/Vintage-Rose-Bowl-Royal-Brierley-Crystal-Cut-Glass-_57.jpg',
+				price: 7.99,
+				category: "Accessories",
+				status: "queue"
 			}));
 		}
 	});
@@ -71,7 +81,7 @@ function init() {
 
 function clean() {
 	StoreItem.remove({}, (err) => {
-		if (err) throw err;
+		if (err) throw err; 
 		console.log('Items removed');
 		StoreItem.find({}, (err, items) => {
 			console.log(items.length);
@@ -83,5 +93,6 @@ module.exports = {
 	init,
 	clean,
 	addItem,
-	getAllItems
+	getAllItems,
+	approveItem
 };
