@@ -15,12 +15,22 @@
     text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
     box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow-bottom: none;
     background-color: #E61A2D;
     background: url(https://www.bhf.org.uk/-/media/images/banners/christmas-2016-jack-opt.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  }
+
+  .body-inner {
+    min-height: 1500px;
+  }
+
+  .panel-body {
+    color: black;
+
   }
 
   .page-wrapper {
@@ -175,6 +185,10 @@
   text-align: left;
   /* text-shadow: none; */
 }
+
+#tab-features .col-sm-4 {
+  padding: 10px 5px;
+} 
 
 #tab-sign-in {
   text-align: center;

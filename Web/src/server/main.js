@@ -42,6 +42,7 @@ app.use(session({
 const { io: sockets } = require('./controllers/shopDashboard');
 sockets.attach(server); // attach() is Socket.IO specific
 
+const StoreItem = require('./models/StoreItem');
 const store = require('./controllers/store');
 store.init();
 
@@ -71,10 +72,22 @@ app.get('/api/store', (req, res) => {
 	});
 });
 
+app.get('/api/uploads', (req, res) => {
+	store.getAllItems().then(items => {
+		res.jsonPretty({ timedate: Date.now(), items: items.filter(item => item.userId != undefined) });
+	});
+});
+
 app.post('/api/queue', upload.single('avatar'), function(req, res) {
 	console.log(req.file); // uploaded file info
-	console.log(req.file.path + " " + req.file.filename); // where it's stored
+	if(req.file) console.log(req.file.path + " " + req.file.filename); // where it's stored
 	console.log(req.body); // text form-fields
+
+	store.addItem(new StoreItem({
+		title: req.body.title,
+		description: req.body.description,
+		suggestedPrice: req.body.suggestedPrice
+	}));
 
 	/* Broadcast to everyone */
 	sockets.emit('new_item');

@@ -5,6 +5,7 @@ block scripts
   script.
     $(function() {
       $(".header-nav a").click(function() {
+        $("footer").hide();
         // switch link/tab/bookmark highlight
         $(".header-nav li").removeClass("active");
         $(this).parent().addClass("active");
@@ -20,8 +21,6 @@ block scripts
           location.href = "/";
         }, 1500);
       });
-
-      populateStore();
 
     });
 
@@ -55,7 +54,7 @@ block body
         // Tab Features
         <div id="tab-features">
           // Include another template
-          include demos/bootstrap-demo
+          //include demos/bootstrap-demo
         </div>
 
         // Tab Sing In
