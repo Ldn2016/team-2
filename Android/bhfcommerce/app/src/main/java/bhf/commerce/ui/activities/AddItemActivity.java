@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,6 +24,8 @@ import android.widget.ImageView;
 import java.io.File;
 
 import bhf.commerce.R;
+import bhf.commerce.connections.API;
+import bhf.commerce.models.Item;
 import bhf.commerce.utils.ImageUtil;
 
 public class AddItemActivity extends AppCompatActivity implements View.OnClickListener{
@@ -32,12 +35,14 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView imageChooser;
     private EditText etTitle;
     private EditText etDescription;
+    private EditText etSuggestedPrice;
     private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Add Item");
+        API.init(this);
         initView();
         askPermission();
     }
@@ -52,6 +57,7 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         imageChooser = (ImageView) findViewById(R.id.image);
         etTitle = (EditText) findViewById(R.id.title);
         etDescription = (EditText) findViewById(R.id.description);
+        etSuggestedPrice = (EditText) findViewById(R.id.suggestedPrice);
 
         imageChooser.setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
@@ -64,6 +70,7 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
                 showChooser();
                 break;
             case R.id.submit:
+                submit();
                 break;
         }
     }
@@ -101,6 +108,16 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         );
 
         builder.show();
+    }
+
+    private void submit(){
+        Item item = new Item();
+        item.setTitle(etTitle.getText().toString());
+        item.setDescription(etDescription.getText().toString());
+        item.setSuggestedPrice(etSuggestedPrice.getText().toString());
+        item.setBitmap(((BitmapDrawable) imageChooser.getDrawable()).getBitmap());
+
+        API.uploadItem(item);
     }
 
     private void openCamera(){

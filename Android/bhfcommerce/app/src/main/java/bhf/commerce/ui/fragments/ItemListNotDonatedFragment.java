@@ -1,6 +1,7 @@
 package bhf.commerce.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bhf.commerce.R;
+import bhf.commerce.ui.activities.AddItemActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +20,7 @@ import bhf.commerce.R;
  * Use the {@link ItemListNotDonatedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ItemListNotDonatedFragment extends ItemListFragment {
+public class ItemListNotDonatedFragment extends ItemListFragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,8 +66,10 @@ public class ItemListNotDonatedFragment extends ItemListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_list_not_donated, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list_not_donated, null);
+        view.findViewById(R.id.fab).setOnClickListener(this);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +77,12 @@ public class ItemListNotDonatedFragment extends ItemListFragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getContext(), AddItemActivity.class);
+        startActivity(intent);
     }
 
     @Override
