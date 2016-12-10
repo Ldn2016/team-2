@@ -28,26 +28,27 @@ app.use(morgan('dev')); // Set up logger
 const debug = require('./utils/debug'); // + my own logger
 app.use(debug.requestInfo); 
 
-//mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
+mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
 
 // Set up secure SESSION cookies
-/*app.use(session({
+app.use(session({
 	secret: config.APP_SECRET,
 	saveUninitialized: false,
 	resave: false, // keep the most recent session modification
 	store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));*/
+}));
 
 /** Route handlers */
 const { io: sockets } = require('./controllers/shopDashboard');
 sockets.attach(server); // attach() is Socket.IO specific
 
 const store = require('./controllers/store');
+store.init();
 
 app.get('/routes', function(req, res) {
 	res.send(`
 		<h1>API</h1>
-		GET <a href="/api/store">/store</a> - get store listing<br>
+		GET <a href="/api/store">/api/store</a> - get store listing<br>
 		POST /api/queue - add new product to the shop assistant's approval queue<br>
 		<hr><br>
 		<h1>Web</h1>
@@ -65,29 +66,10 @@ app.get('/management/shop', (req, res) => {
 	res.render('shop');
 });
 
-app.get('/management/central', (req, res) => {
-	res.render('central');
-});
-
 app.get('/api/store', (req, res) => {
-	const items = [
-		{
-			title: 'Brand New Dress Reiss',
-			descr: 'Size 10 - Blue - Sleeveless',
-			price: 17.99
-		},
-		{
-			title: 'The Father Christmas Letters',
-			descr: 'J.R.R. Tolkien - The Father Christmas Letters - Good condition',
-			price: 2.99
-		},
-		{
-			title: 'Crystal Rose Bowl',
-			descr: 'Vintage pressed green glass',
-			price: 7.99
-		}
-	];
-	res.json({ timedate: Date.now(), items: items });
+	store.getAllItems().then(items => {
+		res.jsonPretty({ timedate: Date.now(), items: items });
+	});
 });
 
 app.post('/api/queue', upload.single('avatar'), function(req, res) {
@@ -100,6 +82,10 @@ app.post('/api/queue', upload.single('avatar'), function(req, res) {
 	res.send("ok");
 });
 
+app.get('/clean', (req, res) => {
+	store.clean();
+	res.send("ok");
+});
 
 module.exports = {
 	server: server,

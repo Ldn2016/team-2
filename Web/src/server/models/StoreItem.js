@@ -15,6 +15,7 @@ let storeItemSchema = new Schema({
 	title: { type: String, required: true },
 	description: String,
 	suggestedPrice: Number,
+	imgUrl: String,
 	price: Number,
 	locLat: Number,
 	locLng: Number,
@@ -27,10 +28,6 @@ let storeItemSchema = new Schema({
 
 // Pre-hook/middleware function for the save() function
 storeItemSchema.pre('save', function(next) {
-	// Perform complex validation, formatting, hashing, etc.
-	if(this.isNew) { // built-in keyword
-		this.password = hash(this.password);
-	}
 	
 	let currentDate = new Date();
 	// change the updated_at field to current date
