@@ -10,8 +10,8 @@ io.on('connection', (socket) => {
 	console.log("socket.io - a user connected - " + uid);
 
 	socket.on('item_approved', (data) => {
-		console.log(data);
-		store.approveItem(data);
+		console.log(data, "now");
+		store.approveItem(data.data);
 	});
 
 	socket.on('disconnect', () => {

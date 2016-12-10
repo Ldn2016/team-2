@@ -33,18 +33,19 @@ function getUserItems(userId) {
 
 // UPDATE = FIND + SAVE
 function approveItem(data) {
-	StoreItem.findById(data.id, (err, item) => {
+	StoreItem.findOneAndUpdate(
+		{ 
+			title: data.title 
+		},
+		{ 
+			status: "approved",
+			price: data.price,
+			category: data.category
+		}, 
+		function(err, item) {
 		if (err) throw err;
 
-		item.status = 'approved';
-		item.price = parseInt(data.price);
-		item.category = data.category;
-
-		item.save((err) => {
-			if (err) throw err;
-
-			console.log('Item successfully updated!');
-		});
+		console.log(item); // updated item
 	});
 }
 
@@ -71,7 +72,8 @@ function init() {
 				description: 'Vintage pressed green glass',
 				imgUrl: 'http://thumbs.picclick.com/00/s/MTIwMFgxNjAw/z/Oa8AAOSwKtVW00LR/$/Vintage-Rose-Bowl-Royal-Brierley-Crystal-Cut-Glass-_57.jpg',
 				price: 7.99,
-				category: "Accessories"
+				category: "Accessories",
+				status: "queue"
 			}));
 		}
 	});

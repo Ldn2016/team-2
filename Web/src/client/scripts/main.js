@@ -40,7 +40,7 @@ function populateStore() {
 				        </div>
 			      	</div>
 		      </div>`);
-			if (true || item.status == "queue") {
+			if (item.status == "queue") {
 				numun++;
 				$target2.append(`
 					<tr>
@@ -67,7 +67,8 @@ function populateStore() {
 
 			const a = {
 				id: $($(this).parent().parent().children("th")[3]).text(),
-				price: $($(this).parent().parent().children("th")[4]).children("input")[0].value,
+				title: $($(this).parent().parent().children("th")[2]).text(),
+				price: parseFloat($($(this).parent().parent().children("th")[4]).children("input")[0].value),
 				category: $($(this).parent().parent().children("th")[5]).children("input")[0].value
 			};
 			console.log(a);

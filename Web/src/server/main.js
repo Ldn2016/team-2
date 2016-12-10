@@ -79,11 +79,11 @@ app.get('/api/uploads', (req, res) => {
 });
 
 app.post('/api/queue', upload.single('avatar'), function(req, res) {
-	console.log(req.file); // uploaded file info
-	if(req.file) console.log(req.file.path + " " + req.file.filename); // where it's stored
+	//console.log(req.file); // uploaded file info
+	//if(req.file) console.log(req.file.path + " " + req.file.filename); // where it's stored
 	console.log(req.body); // text form-fields
 
-	const base64Data = req.file.replace(/^data:image\/png;base64,/, "");
+	const base64Data = req.body.file.replace(/^data:image\/png;base64,/, "");
 	const imgUrl = "/uploads/" + Math.round(Math.random() * 100000) + ".jpg";
 	require("fs").writeFile(path.join("../client/public", imgUrl) , base64Data, 'base64', function(err) {
 	  console.log(err);
