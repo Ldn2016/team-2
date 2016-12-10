@@ -84,8 +84,9 @@ app.post('/api/queue', upload.single('avatar'), function(req, res) {
 	console.log(req.body); // text form-fields
 
 	const base64Data = req.body.file.replace(/^data:image\/png;base64,/, "");
+	//console.log(base64Data);
 	const imgUrl = "/uploads/" + Math.round(Math.random() * 100000) + ".jpg";
-	require("fs").writeFile(path.join("../client/public", imgUrl) , base64Data, 'base64', function(err) {
+	require("fs").writeFile(path.join(pp("../client/public"), imgUrl) , base64Data, 'base64', function(err) {
 	  console.log(err);
 	});
 
