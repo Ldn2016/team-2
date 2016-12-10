@@ -73,6 +73,7 @@ function init() {
 				imgUrl: 'http://thumbs.picclick.com/00/s/MTIwMFgxNjAw/z/Oa8AAOSwKtVW00LR/$/Vintage-Rose-Bowl-Royal-Brierley-Crystal-Cut-Glass-_57.jpg',
 				price: 7.99,
 				category: "Accessories",
+				userId: "3121425",
 				status: "queue"
 			}));
 		}
