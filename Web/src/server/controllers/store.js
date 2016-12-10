@@ -32,11 +32,13 @@ function getUserItems(userId) {
 } 
 
 // UPDATE = FIND + SAVE
-function approveItem() {
-	StoreItem.findById(1, (err, item) => {
+function approveItem(data) {
+	StoreItem.findById(data.id, (err, item) => {
 		if (err) throw err;
 
 		item.status = 'approved';
+		item.price = parseInt(data.price);
+		item.category = data.category;
 
 		item.save((err) => {
 			if (err) throw err;
@@ -89,5 +91,6 @@ module.exports = {
 	init,
 	clean,
 	addItem,
-	getAllItems
+	getAllItems,
+	approveItem
 };

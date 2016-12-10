@@ -18,6 +18,10 @@ function populateStore() {
 		const items = JSON.parse(data).items;
 		console.log(items);
 		const $target = $("#tab-features");
+		$target.html("");
+		const $target2 = $("tbody");
+		$target2.html("");
+		let numun = 0;
 		items.forEach(item => {
 			const timedate = new Date(item.updated_at).toLocaleString();
 			console.log(timedate);
@@ -36,6 +40,43 @@ function populateStore() {
 				        </div>
 			      	</div>
 		      </div>`);
+			if (true || item.status == "queue") {
+				numun++;
+				$target2.append(`
+					<tr>
+	                <th>${numun}</th>
+	                <th><img height="100px" src="${item.imgUrl}"></th>
+	                <th>${item.title}</th>
+	                <th>${item._id}</th>
+	                <th><input type="text" style="text-align:right" value="${item.price}">&pound;</th>
+	                <th><input type="text" placeholder="Category" value="${item.category}"></th>
+	                <th>${item.userId}</th>
+	                <th>
+	                	<button type="button" class="btn btn-danger btn-approve">
+	                		<i class="fa fa-check" aria-hidden="true"></i>
+	                	</button>
+	                	<button type="button" class="btn btn-danger btn-reject">
+	                		<i class="fa fa-times" aria-hidden="true"></i>
+	                	</button>
+	                </th>
+	              </tr>
+	             `);
+			}
+		});
+		$(".btn-approve").click(function() {
+
+			const a = {
+				id: $($(this).parent().parent().children("th")[3]).text(),
+				price: $($(this).parent().parent().children("th")[4]).children("input")[0].value,
+				category: $($(this).parent().parent().children("th")[5]).children("input")[0].value
+			};
+			console.log(a);
+			notifyClicked(a);
+			$(this).parent().parent().fadeOut()
+			
+		});
+		$(".btn-reject").click(function(){
+			$(this).parent().parent().fadeOut()
 		});
 		$(".btn-reserve").click(function() {
 			console.log(this);
@@ -46,4 +87,5 @@ function populateStore() {
 }
 
 
-populateStore();
+setTimeout(populateStore, 1200);
+window.populateStore = populateStore;

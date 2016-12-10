@@ -1,7 +1,7 @@
 "use strict";
 
 const io = require('socket.io')(); // new Server
-
+const store = require('./store');
 let users = [];
 
 io.on('connection', (socket) => {
@@ -11,6 +11,7 @@ io.on('connection', (socket) => {
 
 	socket.on('item_approved', (data) => {
 		console.log(data);
+		store.approveItem(data);
 	});
 
 	socket.on('disconnect', () => {

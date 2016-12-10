@@ -1,22 +1,54 @@
 extends layout
 
 block scripts
-	script(src="/socket.io/socket.io.js")
+    script(src="/socket.io/socket.io.js")
+    style.
+        body {
+            box-shadow: none;
+            background: none;
+            background-color: #eee;
+            color: black;
+            text-shadow: none;
+        }
+
+    script.
+        var socket = io(); // init connection
+
+        /* SEND Message */
+        function notifyClicked(data) { 
+            socket.emit('item_approved', {data: data});
+        }
+
+        /* RECEIVE Message */
+        socket.on('new_item', function() {
+            populateStore();
+        });
 
 block body
-	h3 Hello Web Sockets
-	button(onclick="notify_clicked();") Send message to the server
+    <div class="page-header">
+      <h1><img height="50px" src="https://wearitbeatit.bhf.org.uk/wp-content/themes/bhf-wibi/assets/images/BHF-Logo-mini.png"> Inventory Management</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Product ID</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Member ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-	script.
-		var socket = io(); // init connection
 
-		/* SEND Message */
-		function notify_clicked() { 
-			socket.emit('item_approved', {data: 'I clicked the big button'});
-		}
-
-		/* RECEIVE Message */
-		socket.on('new_item', function() {
-			console.log("ok");
-		});
 
