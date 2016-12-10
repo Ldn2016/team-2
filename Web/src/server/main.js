@@ -53,13 +53,11 @@ app.get('/routes', function(req, res) {
 		<hr><br>
 		<h1>Web</h1>
 		GET <a href="/management/shop">/management/shop</a> - Shop assistant control dashboard<br>
-		GET <a href="/management/central">/management/central</a> - BHF control dashboard<br>
 	`);
 });
 
 app.get('/', (req, res) => {
-	res.send('routes here: <a href="/routes">/routes</a>');
-	//res.render('index');
+	res.render('index');
 });
 
 app.get('/management/shop', (req, res) => {
@@ -78,12 +76,17 @@ app.post('/api/queue', upload.single('avatar'), function(req, res) {
 	console.log(req.body); // text form-fields
 
 	/* Broadcast to everyone */
-	io.emit('new_item', {'msg': 'new user connected'});
+	sockets.emit('new_item');
 	res.send("ok");
 });
 
 app.get('/clean', (req, res) => {
 	store.clean();
+	res.send("ok");
+});
+
+app.get('/debug-new-item', (req, res) => {
+	sockets.emit('new_item');
 	res.send("ok");
 });
 
