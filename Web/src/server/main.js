@@ -52,6 +52,7 @@ app.get('/routes', function(req, res) {
 		POST /api/queue - add new product to the shop assistant's approval queue<br>
 		<hr><br>
 		<h1>Web</h1>
+		GET <a href="/">/</a> - Main website<br>
 		GET <a href="/management/shop">/management/shop</a> - Shop assistant control dashboard<br>
 	`);
 });

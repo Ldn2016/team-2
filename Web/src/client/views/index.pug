@@ -13,7 +13,18 @@ block scripts
         $(".content-wrapper > div").removeClass("active");
         $("#" + $(this).data("target")).addClass("active");
       });
+
+      $(".form-signin").submit(function() {
+        $(".form-signin").fadeOut(1000);
+        setTimeout(function() {
+          location.href = "/";
+        }, 1500);
+      });
+
+      populateStore();
+
     });
+
 
 block body
   <div class="body-inner">
@@ -36,19 +47,14 @@ block body
 
         // Tab Home
         <div id="tab-home" class="active">
-          <h1>Supporting the British Heart Foundation</h1>
-          <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-          <img src="https://www.bhf.org.uk/-/media/upload/facebook-share-image_v5-1.jpg">
-          <p class="lead">
-            <a href="#" class="btn btn-lg btn-default">Learn more</a>
-          </p>
+          <h1>Home in time for Christmas</h1>
+          <p class="lead">Jack was suddenly diagnosed with a rare heart condition.<br/>Our research helped pioneer a new type of operation that <br/>got him home for Christmas.</p>
+          <img src="https://www.bhf.org.uk/-/media/upload/facebook-share-image_v5-1.jpg" width="80%">
         </div>
         
         // Tab Features
         <div id="tab-features">
           // Include another template
-          include demos/font-awesome-demo
-          hr
           include demos/bootstrap-demo
         </div>
 
@@ -65,7 +71,7 @@ block body
                 <input type="checkbox" value="remember-me"> This is a Checkbox
               </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
           </form>
         </div>
 
@@ -74,7 +80,7 @@ block body
 
       // Footer
       <footer>
-        <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>.</p>
+        <p>Code for Good (London 2016) - <a href="https://github.com/Ldn2016/team-2">Team 2</a></p>
       </footer>
 
     </div>
