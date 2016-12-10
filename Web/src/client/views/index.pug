@@ -13,7 +13,18 @@ block scripts
         $(".content-wrapper > div").removeClass("active");
         $("#" + $(this).data("target")).addClass("active");
       });
+
+      $(".form-signin").submit(function() {
+        $(".form-signin").fadeOut(1000);
+        setTimeout(function() {
+          location.href = "/";
+        }, 1500);
+      });
+
+      populateStore();
+
     });
+
 
 block body
   <div class="body-inner">
@@ -44,8 +55,6 @@ block body
         // Tab Features
         <div id="tab-features">
           // Include another template
-          include demos/font-awesome-demo
-          hr
           include demos/bootstrap-demo
         </div>
 
@@ -71,7 +80,7 @@ block body
 
       // Footer
       <footer>
-        <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>.</p>
+        <p>Code for Good (London 2016) - <a href="https://github.com/Ldn2016/team-2">Team 2</a></p>
       </footer>
 
     </div>

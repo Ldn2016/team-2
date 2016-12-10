@@ -10,3 +10,11 @@ evenNumbers.forEach((x, i) => {
 });
 
 console.log("Main module loaded.");
+
+
+function populateStore() {
+	$.get("/api/store", function(data) {
+		console.log(data);
+	});
+}
+
