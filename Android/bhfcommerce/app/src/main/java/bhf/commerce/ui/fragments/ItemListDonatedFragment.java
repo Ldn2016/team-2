@@ -7,20 +7,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import bhf.commerce.R;
+import bhf.commerce.callbacks.OnListItemFetched;
+import bhf.commerce.connections.API;
+import bhf.commerce.models.Item;
+import bhf.commerce.ui.adapters.ItemAdapter;
 
 
-public class ItemListDonatedFragment extends ItemListFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+public class ItemListDonatedFragment extends ItemListFragment implements OnListItemFetched {
+    List<Item> donated = new ArrayList<>();
+    protected ItemAdapter adapter;
     private OnFragmentInteractionListener mListener;
 
     public ItemListDonatedFragment() {
@@ -30,27 +31,20 @@ public class ItemListDonatedFragment extends ItemListFragment {
     public static ItemListDonatedFragment newInstance(String param1, String param2) {
         ItemListDonatedFragment fragment = new ItemListDonatedFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list_donated, null);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
-        //recyclerView.setAdapter(adapter);
+        GridView gridView = (GridView) view.findViewById(R.id.gridview);
+        adapter = new ItemAdapter(getContext());
+        gridView.setAdapter(adapter);
+
+        API.init(getActivity());
+        API.getListItems(this);
 
         return view;
     }
@@ -96,5 +90,18 @@ public class ItemListDonatedFragment extends ItemListFragment {
 
     public String getTitle(){
         return "Donated";
+    }
+
+    @Override
+    public void onItemFetched(Item[] items) {
+        setData(items);
+    }
+
+    public void setData(Item items[]){
+        for(Item item : items){
+            if(!item.getStatus().equals("queue")){
+                donated.add(item);
+            }
+        }
     }
 }

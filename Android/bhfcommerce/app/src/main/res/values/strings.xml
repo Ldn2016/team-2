@@ -12,4 +12,61 @@
     <string name="suggested_price">Suggested Price</string>
     <string name="title_activity_profile">My Profile</string>
     <string name="title_activity_gift_aid_signup">GiftAidSignupActivity</string>
+
+    <string name="coronary"><![CDATA[<p>Coronary heart disease(CHD), is the leading cause of death both in the UK and
+worldwide. Each year, about 1 in 6 men and 1 in 10 women in the UK die from CHD.
+CHD is caused by the build up of fatty material inside the artery walls. This
+build up of fat narrows the artery walls and may cause a blood clot to form.
+If it blocks the coronary artery and cuts off the supply of oxygen-rich
+blood to your heart muscle, your heart may become permanently damanged. This is
+known as a heart attack.
+Learn more: <a href="http://tinyurl.com/prbsx65">http://tinyurl.com/prbsx65</a>
+<p>]]></string>
+
+    <string name="inherited"><![CDATA[<p>Inherited conditions can be passed on through families. They can affect many parts
+of the body or cause many different conditions and are sometimes called genetic
+heart conditions.
+Inherited heart conditions can cause heart rhythm disturbances, cardiomyopathies
+(enlarged heart) and very high cholesterol levels. These conditions can lead to
+strokes, heart failure and heart attacks.
+Learn more: <a href="http://tinyurl.com/zjunaq9">http://tinyurl.com/zjunaq9</a>
+<p>]]></string>
+
+    <string name="regenerative"><![CDATA[<p>In 2013 we took a major step towards mending broken hearts when we committed to
+funding four pioneering Centres of Regenerative Medicine at top UK universities.
+The universities involved are working on finding ways to grow new blood vessels
+to replace those damanged by a heart attack, developing ways to grow patches of
+heart tissue from stem cells that could be used to repair damaged hearts and
+understanding how the heart might be taught to repair itself after the damage
+of a heart attack.
+Learn more: <a href="http://tinyurl.com/z8y476r">http://tinyurl.com/z8y476r</a>
+<p>]]></string>
+
+    <string name="atrial"><![CDATA[<p>An irregular pulse could be a sign that you have an abnormal heart rhythm.
+Atrial Fibrillation (AF) is one of the most common forms of abnormal heart rhythm
+and it is a major cause of strokes.
+AF can be inherited from birth but it can also be linked to come from high blood
+pressure, heart valve disease, overactive thyroid gland and excessive alcohol
+consumption.
+Learn more: <a href="http://tinyurl.com/zw96qwc">http://tinyurl.com/zw96qwc</a>
+<p>]]></string>
+
+    <string name="cardiomyopathy"><![CDATA[<p>Cardiomyopathy is a disease of the heart muscle. It can run in families and can
+affect one or several members of a family. Some members of a family may be
+affected more than others and some family members may not be affected or have any
+symptons at all.
+Cardiomyopathy changes the size of your heart and can also affect the way the
+electrical system makes your heart beat.
+Learn more: <a href="http://tinyurl.com/m2639pb">http://tinyurl.com/m2639pb</a>
+<p>]]></string>
+
+    <string name="septic"><![CDATA[<p>Sepsis is a life-threatening condition caused by infection and it leads to more
+than 100,000 people being admitted to UK hospitals every year. Around 37% of
+those admitted to hospital die in hospital.
+The BHF is funding research into L-257 a revelutionary new drug which, if
+development progresses at its current rate will be a drug in circulaation
+mid 2017
+successful, will be in production in 2017.
+<p>]]></string>
+    <string name="title_activity_research_detail">Research Detail</string>
 </resources>

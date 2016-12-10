@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileMenu.On
         fragments[1] = new MoneyRaisedFragment();
         fragments[2] = new PreferencesFragment();
         fragments[3] = new MeetResearcherFragment();
+        changeFragment(0);
     }
 
     @Override
@@ -71,10 +72,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileMenu.On
 
     @Override
     public void onMenuClick(int menu) {
+        changeFragment(menu);
+    }
+
+    private void changeFragment(int menu){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, fragments[menu]);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
 
         transaction.commit();
     }

@@ -1,14 +1,20 @@
 package bhf.commerce.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import bhf.commerce.R;
+import bhf.commerce.ui.activities.ResearchDetailActivity;
+import bhf.commerce.utils.Holder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,15 +24,14 @@ import bhf.commerce.R;
  * Use the {@link PreferencesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PreferencesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class PreferencesFragment extends Fragment implements View.OnClickListener{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
+    private TextView tv4;
+    private TextView tv5;
+    private TextView tv6;
 
     private OnFragmentInteractionListener mListener;
 
@@ -46,25 +51,74 @@ public class PreferencesFragment extends Fragment {
     public static PreferencesFragment newInstance(String param1, String param2) {
         PreferencesFragment fragment = new PreferencesFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onResume() {
+        super.onResume();
+        if(Holder.list.contains(1)){
+            tv1.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv1.setBackgroundColor(Color.WHITE);
+        }
+
+        if(Holder.list.contains(2)){
+            tv2.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv2.setBackgroundColor(Color.WHITE);
+        }
+
+        if(Holder.list.contains(3)){
+            tv3.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv3.setBackgroundColor(Color.WHITE);
+        }
+
+        if(Holder.list.contains(4)){
+            tv4.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv4.setBackgroundColor(Color.WHITE);
+        }
+
+        if(Holder.list.contains(5)){
+            tv5.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv5.setBackgroundColor(Color.WHITE);
+        }
+
+        if(Holder.list.contains(6)){
+            tv6.setBackgroundColor(getResources().getColor(R.color.button_subscribe));
+        } else{
+            tv6.setBackgroundColor(Color.WHITE);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_money_raised, null);
+        View view = inflater.inflate(R.layout.fragment_preferences, null);
+        tv1 = (TextView) view.findViewById(R.id.text1);
+        tv2 = (TextView) view.findViewById(R.id.text2);
+        tv3 = (TextView) view.findViewById(R.id.text3);
+        tv4 = (TextView) view.findViewById(R.id.text4);
+        tv5 = (TextView) view.findViewById(R.id.text5);
+        tv6 = (TextView) view.findViewById(R.id.text6);
+
+        tv1.setText(Html.fromHtml(getString(R.string.coronary)));
+        tv2.setText(Html.fromHtml(getString(R.string.inherited)));
+        tv3.setText(Html.fromHtml(getString(R.string.regenerative)));
+        tv4.setText(Html.fromHtml(getString(R.string.atrial)));
+        tv5.setText(Html.fromHtml(getString(R.string.cardiomyopathy)));
+        tv6.setText(Html.fromHtml(getString(R.string.septic)));
+
+        tv1.setOnClickListener(this);
+        tv2.setOnClickListener(this);
+        tv3.setOnClickListener(this);
+        tv4.setOnClickListener(this);
+        tv5.setOnClickListener(this);
+        tv6.setOnClickListener(this);
 
         return view;
     }
@@ -106,5 +160,33 @@ public class PreferencesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int number = 0;
+        switch (view.getId()){
+            case R.id.text1:
+                number = 1;
+                break;
+            case R.id.text2:
+                number = 2;
+                break;
+            case R.id.text3:
+                number = 3;
+                break;
+            case R.id.text4:
+                number = 4;
+                break;
+            case R.id.text5:
+                number = 5;
+                break;
+            case R.id.text6:
+                number = 6;
+                break;
+        }
+
+        Intent intent = ResearchDetailActivity.createIntent(getActivity(), number);
+        startActivity(intent);
     }
 }

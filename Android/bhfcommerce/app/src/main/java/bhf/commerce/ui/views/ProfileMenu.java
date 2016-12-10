@@ -33,6 +33,7 @@ public class ProfileMenu extends LinearLayout implements View.OnClickListener{
     }
 
     private void initView(){
+
         View view = inflate(getContext(), R.layout.layout_profile_menu, this);
         myId = view.findViewById(R.id.id);
         moneyRaised = view.findViewById(R.id.raised);
@@ -43,6 +44,8 @@ public class ProfileMenu extends LinearLayout implements View.OnClickListener{
         moneyRaised.setOnClickListener(this);
         preferences.setOnClickListener(this);
         meetResearcher.setOnClickListener(this);
+        reset();
+        myId.setBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 
     private void reset(){
@@ -64,6 +67,6 @@ public class ProfileMenu extends LinearLayout implements View.OnClickListener{
     }
 
     public interface OnMenuClicked{
-        public void onMenuClick(int menu);
+        void onMenuClick(int menu);
     }
 }

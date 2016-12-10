@@ -8,9 +8,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import bhf.commerce.R;
+import bhf.commerce.callbacks.OnListItemFetched;
+import bhf.commerce.connections.API;
+import bhf.commerce.models.Item;
 import bhf.commerce.ui.activities.AddItemActivity;
+import bhf.commerce.ui.adapters.ItemAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,47 +28,20 @@ import bhf.commerce.ui.activities.AddItemActivity;
  * Use the {@link ItemListNotDonatedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ItemListNotDonatedFragment extends ItemListFragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+public class ItemListNotDonatedFragment extends ItemListFragment implements View.OnClickListener, OnListItemFetched {
+    List<Item> undonated = new ArrayList<>();
+    protected ItemAdapter adapter;
     private OnFragmentInteractionListener mListener;
 
     public ItemListNotDonatedFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemListNotDonatedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ItemListNotDonatedFragment newInstance(String param1, String param2) {
         ItemListNotDonatedFragment fragment = new ItemListNotDonatedFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -68,6 +49,13 @@ public class ItemListNotDonatedFragment extends ItemListFragment implements View
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list_not_donated, null);
         view.findViewById(R.id.fab).setOnClickListener(this);
+
+        GridView gridView = (GridView) view.findViewById(R.id.gridview);
+        adapter = new ItemAdapter(getContext());
+        gridView.setAdapter(adapter);
+
+        API.init(getActivity());
+        API.getListItems(this);
 
         return view;
     }
@@ -119,5 +107,22 @@ public class ItemListNotDonatedFragment extends ItemListFragment implements View
 
     public String getTitle(){
         return "Not Donated";
+    }
+
+    @Override
+    public void onItemFetched(Item[] items) {
+        setData(items);
+    }
+
+    public void setData(Item items[]){
+        for(Item item : items){
+            if(item.getStatus().equals("queue")){
+                undonated.add(item);
+            }
+        }
+
+        System.out.println("Items Data: " + items.length);
+
+        adapter.setData(undonated);
     }
 }

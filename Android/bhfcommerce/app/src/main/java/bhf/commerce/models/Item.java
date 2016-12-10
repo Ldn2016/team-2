@@ -2,6 +2,9 @@ package bhf.commerce.models;
 
 import android.graphics.Bitmap;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by whdinata on 12/9/16.
  */
@@ -12,6 +15,22 @@ public class Item {
     private String description;
     private String suggestedPrice;
     private String status;
+    private String price;
+
+    public Item(){}
+
+    public Item(JSONObject obj){
+        try{
+            title = obj.getString("title");
+            description = obj.getString("description");
+            suggestedPrice = obj.getString("suggestedPrice");
+            price = obj.getString("price");
+            status = obj.getString("status");
+            imageUrl = obj.getString("imgUrl");
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
 
     public String getImageUrl() {
         return imageUrl;
