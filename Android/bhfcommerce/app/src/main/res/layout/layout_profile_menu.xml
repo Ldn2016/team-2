@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:padding="5dp"
+        android:tag="0"
+        android:text="My ID"/>
+
+    <TextView
+        android:id="@+id/raised"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:padding="5dp"
+        android:tag="1"
+        android:text="My ID"/>
+
+    <TextView
+        android:id="@+id/preferences"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:padding="5dp"
+        android:tag="2"
+        android:text="My ID"/>
+
+    <TextView
+        android:id="@+id/meet"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:padding="5dp"
+        android:tag="3"
+        android:text="My ID"/>
+</merge>

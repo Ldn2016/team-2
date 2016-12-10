@@ -11,4 +11,5 @@
     <string name="description">Description</string>
     <string name="suggested_price">Suggested Price</string>
     <string name="title_activity_profile">My Profile</string>
+    <string name="title_activity_gift_aid_signup">GiftAidSignupActivity</string>
 </resources>

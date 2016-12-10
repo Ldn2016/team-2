@@ -22,16 +22,26 @@
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_margin="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:src="@drawable/profpic"
             app:civ_border_width="2dp"
             app:civ_border_color="#FF000000"/>
+        
+        <Button
+            android:id="@+id/gift_aid"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/profile_image"
+            android:text="Sign up Gift Aid"
+            android:textSize="11sp"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/profile_image"
             android:text="Willy Halim Dinata"
             android:textSize="20sp"
@@ -66,10 +76,33 @@
             android:gravity="center_vertical"
             android:drawableLeft="@drawable/ic_address"
             android:text="25 Bank Street, London"/>
+
+        <TextView
+            android:id="@+id/gift_aid_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_toRightOf="@id/profile_image"
+            android:layout_marginLeft="10dp"
+            android:text="Gift Aid: No"
+            android:textStyle="bold"/>
+
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#888888"/>
+    
+    <bhf.commerce.ui.views.ProfileMenu
+        android:id="@+id/profile_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
 </LinearLayout>
