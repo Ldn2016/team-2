@@ -2,4 +2,11 @@
     <string name="app_name">bhfcommerce</string>
 
     <string name="bt_submit">Submit</string>
+    <string name="title_activity_list_item">Item List</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
