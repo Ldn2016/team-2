@@ -25,21 +25,7 @@ function populateStore() {
 		items.forEach(item => {
 			const timedate = new Date(item.updated_at).toLocaleString();
 			console.log(timedate);
-			$target.append(`
-				<div class="col-sm-4">
-					<div class="panel panel-danger">
-				        <div class="panel-heading">
-				          <h3 class="panel-title">${item.title} - ${item.price}&pound;</h3>
-				        </div>
-				        <div class="panel-body">
-				          <img src="${item.imgUrl}" class="img-thumbnail">
-				        	Category: ${item.category} <br>
-				        	Added: ${timedate} <br>
-				          	<span style="text-shadow: none;">${item.description}</span><br><br>
-				          	<button type="button" class="btn btn-danger btn-reserve">Reserve item</button>
-				        </div>
-			      	</div>
-		      </div>`);
+			
 			if (item.status == "queue") {
 				numun++;
 				$target2.append(`
@@ -61,6 +47,22 @@ function populateStore() {
 	                </th>
 	              </tr>
 	             `);
+			} else {
+				$target.append(`
+				<div class="col-sm-4">
+					<div class="panel panel-danger">
+				        <div class="panel-heading">
+				          <h3 class="panel-title">${item.title} - ${item.price}&pound;</h3>
+				        </div>
+				        <div class="panel-body">
+				          <img src="${item.imgUrl}" class="img-thumbnail">
+				        	Category: ${item.category} <br>
+				        	Added: ${timedate} <br>
+				          	<span style="text-shadow: none;">${item.description}</span><br><br>
+				          	<button type="button" class="btn btn-danger btn-reserve">Reserve item</button>
+				        </div>
+			      	</div>
+		      </div>`);
 			}
 		});
 		$(".btn-approve").click(function() {
